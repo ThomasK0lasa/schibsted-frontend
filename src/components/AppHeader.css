@@ -1,0 +1,23 @@
+.app-header {
+  margin-top: 5vh;
+  display: flex;
+}
+
+.app-logo {
+  margin-right: 20px;
+}
+.app-name {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  align-self: flex-end;
+}
+.app-name h1 {
+  border-bottom: 5px solid;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.app-name p {
+  margin: 0;
+  font-style: italic;
+}

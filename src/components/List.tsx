@@ -5,6 +5,7 @@ import ListSort from './ListSort';
 import './List.css';
 import { Article } from './ArticleInterface';
 import query from '../router/searchQuery'
+import apiURL from '../config';
 
 interface State {
   errorMsg: string;
@@ -39,7 +40,6 @@ class List extends React.Component<Props, {}> {
   }
 
   async getData() {
-    const apiURL = "http://localhost:6010/articles/";
     let data: Array<object> = [];
     let errorMsg = '';
     let selected: Array<String> = [];

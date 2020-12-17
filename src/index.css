@@ -1,16 +1,13 @@
-/* start - setting minimum height of 100% - start */
+/* setting minimum height of 100% */
 html {
   height: 100%;
 }
-
 body {
   min-height: 100%;
 }
-
 #Root, #App {
   min-height: 100vh;
 }
-/* end - setting minimum height of 100% - end */
 
 body {
   margin: 0;
@@ -24,4 +21,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Toastify progress-bar override */
+#App .Toastify__progress-bar--default {
+  background: linear-gradient(90deg,#5ac8fa,#2dffcf);
 }

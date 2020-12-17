@@ -26,6 +26,13 @@ function ListFilter(props: {
     props.select(type);
   }
 
+  // handling enter key on checkbox
+  function keyDown(e: React.KeyboardEvent, type: string ) {
+    if (e.key === 'Enter') {
+      selection(type);
+    }
+  }
+
   //
   return (
     <nav>
@@ -37,8 +44,10 @@ function ListFilter(props: {
               <label className="checkbox-container">
                 <input type="checkbox"
                   disabled={disabled(type)}
-                  defaultChecked={checked(type)}
-                  onClick={() => selection(type)} />
+                  checked={checked(type)}
+                  onChange={() => selection(type)}
+                  onKeyPress={e => keyDown(e, type)} />
+                  <span className="checkmark"></span>
                   <span className="checkbox-title">{type}</span>
               </label>
             </li>

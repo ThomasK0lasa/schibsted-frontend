@@ -62,10 +62,11 @@ class List extends React.Component<Props, {}> {
         }
       } catch (err) {
         if (err instanceof TypeError) {
+          // fetch TypeError
           errorMsg = 'Network error'
         } else {
           // throwing separate error toast when part of API is 'down'
-          this.props.onToast('Something wrong with ' + resource.toUpperCase() + ' API!', 'error');
+          this.props.onToast('Something is wrong with ' + resource.toUpperCase() + ' API endpoint!', 'error');
         }
       }
     }
@@ -73,6 +74,7 @@ class List extends React.Component<Props, {}> {
     // fetching loop
     for (let i = 0; i < this.apiEndpoints.length; i++) {
       await fetchData(this.apiEndpoints[i]);
+      if (errorMsg !== '') { break; } // Breaking the loop on Network Error
     }
 
     // respecting search query if all API endpoints working fine

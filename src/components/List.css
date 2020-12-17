@@ -31,7 +31,7 @@ main.no-selection p {
   color: white;
 }
 
-@media (min-width: 780px) {
+@media (min-width: 781px) {
   #Content {
     flex-direction: row;
   }

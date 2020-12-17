@@ -26,7 +26,7 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
   cursor: default;
 }
 
-@media (min-width: 780px) {
+@media (min-width: 781px) {
   nav {
     margin-top: 20px;
     width: 150px;

@@ -1,3 +1,3 @@
-const apiURL = "https://news-previews-api.herokuapp.com/articles/";
+const apiURL = "http://localhost:6010/articles/";
 
 export default apiURL;

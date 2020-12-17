@@ -1,17 +1,25 @@
 # Schibsted frontend task app
 
 ## Assumptions about the App
-- application seems like news aggregating software
-- in my mind the App supposed to work even if some API endpoints won't work
+- application seems like news aggregating/displaying software
+- the App supposed to work even if some API endpoints won't work
 - App will fetch new data only on refresh (no new requests when selecting Data sources checkboxes, just hiding and showing existing data). This, of course could be build differently with refresh on every new selection.
-- API have 10% failure chance and depending on responses I display different errors.
+- API have 10% failure chance and depending on responses the App will display different errors.
+- thought about Redux and Materializecss and decided to go without it
 
 ## Setting up Application
 
 To run the API server do:
-> `$ node server.js`
+> `node server.js`
 
-To run Application do:
+To run Application developer version do:
+> `npm run start`
+
+You can find production server here:
+
+
+And live API server here:
+
 
 
 This is a very basic npm project with default webpack setup.

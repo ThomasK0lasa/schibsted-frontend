@@ -3,6 +3,7 @@ import './ListFilter.css';
 function ListFilter(props: {
   types: Array<string>,
   active: Array<string>,
+  selected: Array<string>,
   select: (type: string) => void
 }) {
 
@@ -17,7 +18,7 @@ function ListFilter(props: {
 
   // setting checked
   function checked(type: string) {
-    return props.active.indexOf(type) !== -1 ? true : false;
+    return props.selected.indexOf(type) !== -1 ? true : false;
   }
 
   // calling select from parent on click

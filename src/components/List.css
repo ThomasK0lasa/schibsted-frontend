@@ -26,6 +26,11 @@ main.error p {
   color: white;
 }
 
+main.no-selection p {
+  background-color: #3ca8e7;
+  color: white;
+}
+
 @media (min-width: 780px) {
   #Content {
     flex-direction: row;

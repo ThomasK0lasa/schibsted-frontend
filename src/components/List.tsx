@@ -4,12 +4,13 @@ import ListFilter from './ListFilter';
 import ListSort from './ListSort';
 import './List.css';
 import { Article } from './ArticleInterface';
+import query from '../router/searchQuery'
 
 interface State {
   errorMsg: string;
   data: Array<Article>;
   sortDir: string;
-  selected: Array<String>;
+  selected: Array<string>;
 }
 
 interface Props {
@@ -17,30 +18,29 @@ interface Props {
 }
 
 class List extends React.Component<Props, {}> {
-  // Defined APIs for App initial checking
-  apiResources: Array<string> = ['sports', 'fashion'];
-  // List of working APIs
-  liveResources: Array<string> = [];
-  // Mapping of API categories to article category
+  apiEndpoints: Array<string> = ['sports', 'fashion']; // API Endpoints
+  liveEndpoints: Array<string> = []; // working Endpoints
+  // Mapping of article categories to API Endpoints
   APImapToCat: { [key: string]: string } = {
     'sport': 'sports',
     'fashion': 'fashion'
   }
 
   state: State = {
-    errorMsg: '',
-    data: [],
-    sortDir: 'natural',
-    selected: []
+    errorMsg: '', // error message
+    data: [], // articles
+    sortDir: 'natural', // sorting direction
+    selected: [] // selected categories
   }
 
-  componentDidMount() {
-    this.getData();
+  async componentDidMount() {
+    await this.getData();
+    this.shouldSort()
   }
 
   async getData() {
     const apiURL = "http://localhost:6010/articles/";
-    let obj: Array<Object> = [];
+    let data: Array<object> = [];
     let errorMsg = '';
     let selected: Array<String> = [];
 
@@ -56,11 +56,9 @@ class List extends React.Component<Props, {}> {
         const json = await response.json();
         const { articles } = json;
         if (articles) {
-          this.liveResources.push(resource);
+          this.liveEndpoints.push(resource);
           selected.push(resource);
-          articles.forEach((article: Article) => {
-            obj.push(article);
-          })
+          data = [...data, ...articles];
         }
       } catch (err) {
         if (err instanceof TypeError) {
@@ -73,28 +71,50 @@ class List extends React.Component<Props, {}> {
     }
 
     // fetching loop
-    for (let i = 0; i < this.apiResources.length; i++) {
-      await fetchData(this.apiResources[i]);
+    for (let i = 0; i < this.apiEndpoints.length; i++) {
+      await fetchData(this.apiEndpoints[i]);
+    }
+
+    // respecting search query if all API endpoints working fine
+    const noErrors = this.liveEndpoints.length === this.apiEndpoints.length;
+    if (query.checkParamKey('t') && noErrors) {
+      selected = [];
+      this.liveEndpoints.forEach(resource => {
+        if (query.checkParamValue(resource)) {
+          selected.push(resource);
+        }
+      });
     }
 
     // throwing one toast on errorMsg as probably there's network error 
     if (errorMsg === 'Network error') {
       this.props.onToast('Network error!', 'error');
     }
-    let noErrors = this.liveResources.length === this.apiResources.length;
 
     // Succes toast when there's no errors :)
     if (noErrors && !errorMsg) {
       this.props.onToast('Loaded successfully :)');
-    } else if (this.liveResources.length === 0) {
+    } else if (this.liveEndpoints.length === 0) {
       // When all APIs throw error showing error text in <main> 
-      errorMsg = "We are sorry but, seems that all APIs have a problem. :("
+      errorMsg = "We are sorry but, seems that all API endpoints have a problem. :("
     }
-    this.setState({ data: obj, errorMsg: errorMsg, selected: selected });
+    this.setState({ data: data, errorMsg: errorMsg, selected: selected });
+  }
+
+  // initial sorting if query 
+  shouldSort() {
+    if (query.checkParamKey('s')) {
+      if (query.checkParamValue('dsc')) {
+        this.sortData(true);
+      } else if (query.checkParamValue('asc')) {
+        this.setState({ sortDir: 'dsc' })
+        this.sortData(true);
+      }
+    }
   }
 
   // data sorting function
-  sortData = () => {
+  sortData = (oldQuery?: Boolean) => {
     // translations of months
     let trans: { [key: string]: string } = {
       januar: 'January',
@@ -117,6 +137,8 @@ class List extends React.Component<Props, {}> {
         }),
         sortDir: 'asc'
       });
+      if (oldQuery)
+        query.setSort('asc');
     } else {
       this.setState({
         data: this.state.data.sort((a, b) => {
@@ -124,6 +146,8 @@ class List extends React.Component<Props, {}> {
         }),
         sortDir: 'dsc'
       });
+      if (oldQuery)
+        query.setSort('dsc');
     }
 
     // sort by date function
@@ -147,16 +171,13 @@ class List extends React.Component<Props, {}> {
       newSelected.splice(index, 1)
       this.setState({ selected: newSelected })
     }
+    query.setType(newSelected, this.liveEndpoints.length);
   }
 
   // checking if article is in selected data sources
   ifSelected(category: string) {
     const index = this.state.selected.indexOf(this.APImapToCat[category]);
-    if (index !== -1) {
-      return true;
-    } else {
-      return false;
-    }
+    return (index !== -1) ? true : false;
   }
 
   render() {
@@ -168,9 +189,15 @@ class List extends React.Component<Props, {}> {
           this.state.data.length === 0 ?
             <main className="loading"><p>Loading...</p></main> :
             <React.Fragment>
-              <ListFilter types={this.apiResources} active={this.liveResources} select={this.select} />
+              <ListFilter
+                types={this.apiEndpoints}
+                active={this.liveEndpoints}
+                selected={this.state.selected}
+                select={this.select} />
               {this.state.selected.length === 0 ?
-                <main className="no-selection"><p>Please, select data source. :)</p></main> :
+                <main className="no-selection">
+                  <p>Please, select data source. :)</p>
+                </main> :
                 <main>
                   <ListSort sort={this.sortData} currDir={this.state.sortDir} />
                   {

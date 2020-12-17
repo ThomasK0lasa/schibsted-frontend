@@ -18,10 +18,6 @@ nav li {
   text-transform: capitalize;
 }
 
-.checkbox-container, input[type=checkbox] {
-  cursor: pointer;
-}
-
 nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
   cursor: default;
 }
@@ -31,6 +27,7 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
   position: relative;
   padding-left: 35px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* Hide the browser's default checkbox */
@@ -95,8 +92,6 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
   height: 8px;
   border: solid white;
   border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 

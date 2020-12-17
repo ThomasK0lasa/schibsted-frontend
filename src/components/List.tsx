@@ -158,6 +158,8 @@ class List extends React.Component<Props, {}> {
       const bdate = b.trim().split(' ');
       adate[1] = trans[adate[1]];
       bdate[1] = trans[bdate[1]];
+      adate[0] = adate[0].slice(0, -1); //removing dot from date as Firefox cant handle it
+      bdate[0] = bdate[0].slice(0, -1); //removing dot from date as Firefox cant handle it
       return Date.parse(adate.join(' ')) - Date.parse(bdate.join(' '));
     }
   }

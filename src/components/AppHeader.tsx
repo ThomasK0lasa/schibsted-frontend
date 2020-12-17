@@ -10,7 +10,7 @@ function Header() {
         <h1>
           News Previews
           </h1>
-        <p>Demo App for Schibsted</p>
+        <p>Recruitment App for Schibsted</p>
       </div>
     </header>
   );

@@ -5,6 +5,8 @@
 
 .app-logo {
   margin-right: 20px;
+  align-self: flex-end;
+  height: 80px;
 }
 .app-name {
   display: flex;

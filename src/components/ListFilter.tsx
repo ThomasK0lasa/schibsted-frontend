@@ -1,12 +1,14 @@
+import query from '../utils/query';
 import './ListFilter.css';
 
-function ListFilter(props: {
+interface props {
   types: Array<string>,
   active: Array<string>,
   selected: Array<string>,
-  select: (type: string) => void
-}) {
+  select: (newSelection: Array<string>) => void
+}
 
+function ListFilter(props: props) {
   // disabling checkboxes for broken APIs and in case there's only one working API  
   function disabled(type: string) {
     if (props.types.length - props.active.length === 1) {
@@ -21,19 +23,26 @@ function ListFilter(props: {
     return props.selected.indexOf(type) !== -1 ? true : false;
   }
 
-  // calling select from parent on click
-  function selection(type: string) {
-    props.select(type);
+  function select(element: any, type: string ) {
+    const target = element.target;
+    let newSelected: Array<string> = props.selected.slice();
+    if (target.checked) {
+      newSelected.push(type);
+    } else {
+      const index = props.selected.indexOf(type);
+      newSelected.splice(index, 1);
+    }
+    query.setType(newSelected, props.types.length);
+    props.select(newSelected);
   }
 
   // handling enter key on checkbox
   function keyDown(e: React.KeyboardEvent, type: string ) {
     if (e.key === 'Enter') {
-      selection(type);
+      select(e, type);
     }
   }
 
-  //
   return (
     <nav>
       <p>Data sources: </p>
@@ -45,8 +54,8 @@ function ListFilter(props: {
                 <input type="checkbox"
                   disabled={disabled(type)}
                   checked={checked(type)}
-                  onChange={() => selection(type)}
-                  onKeyPress={e => keyDown(e, type)} />
+                  onChange={ e => select(e, type)}
+                  onKeyPress={ e => keyDown(e, type)} />
                   <span className="checkmark"></span>
                   <span className="checkbox-title">{type}</span>
               </label>

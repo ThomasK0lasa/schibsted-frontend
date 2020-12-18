@@ -1,5 +1,5 @@
 import './ListItem.css';
-import { Article } from './ArticleInterface';
+import { Article } from '../interfaces/Article';
 
 function ListItem(props: Article) {
   // Leaving the data-id and data-cat for debugging purpose

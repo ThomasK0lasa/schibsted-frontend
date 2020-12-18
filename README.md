@@ -1,5 +1,5 @@
 # Schibsted Frontend assignment App
-Application built with use of React
+Application built with use of React. [Live version on Heroku](https://news-previews.herokuapp.com/).
 
 ## Assumptions about the App
 - application seems like news aggregating/displaying software

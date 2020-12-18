@@ -24,9 +24,8 @@ function ListFilter(props: props) {
   }
 
   function select(element: any, type: string ) {
-    const target = element.target;
     let newSelected: Array<string> = props.selected.slice();
-    if (target.checked) {
+    if (element.target.checked) {
       newSelected.push(type);
     } else {
       const index = props.selected.indexOf(type);

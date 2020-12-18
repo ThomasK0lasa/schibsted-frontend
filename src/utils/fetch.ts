@@ -1,5 +1,5 @@
 import { Article } from "../interfaces/Article";
-import apiURL from '../config';
+import env from "react-dotenv";
 
 async function fetchData (resource: string) {
   let data: Array<Article> = [];
@@ -7,7 +7,7 @@ async function fetchData (resource: string) {
   // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
   // fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500
   try {
-    const response = await fetch(apiURL + resource);
+    const response = await fetch(env.API_URL + resource);
     if (!response.ok) {
       throw response.status;
     }

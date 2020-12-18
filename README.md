@@ -19,6 +19,7 @@ To run the API server do:
 > `node server.js`
 
 To run the App developer version do:
+> `npm install`
 > `npm run start`
 
 ### ONLINE

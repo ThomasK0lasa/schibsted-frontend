@@ -19,12 +19,15 @@ To run the API server do:
 > `node server.js`
 
 To run the App developer version do:
-> `npm install`
+
+> `mv .env.template .env` // on Mac\Linux<br>
+> `move .env.template .env` // on Windows<br>
+> `npm install`<br>
 > `npm run start`
 
 ### ONLINE
 
-You can find production here:
+You can find online App here:
 https://news-previews.herokuapp.com/
 
 And live API here:

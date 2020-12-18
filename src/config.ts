@@ -1,3 +1,3 @@
-const apiURL = process.env.APIHOST || "http://localhost:6010/articles/";
+const apiURL = process.env.APIHOST;
 
 export default apiURL;

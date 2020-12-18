@@ -9,13 +9,9 @@ interface props {
 }
 
 function ListFilter(props: props) {
-  // disabling checkboxes for broken APIs and in case there's only one working API  
+  // setting disabled
   function disabled(type: string) {
-    if (props.types.length - props.active.length === 1) {
-      return true;
-    } else {
-      return props.active.indexOf(type) !== -1 ? false : true;
-    }
+    return props.active.indexOf(type) !== -1 ? false : true;
   }
 
   // setting checked

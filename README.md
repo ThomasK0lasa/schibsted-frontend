@@ -21,7 +21,7 @@ To run the API server do:
 To run the App developer version do:
 
 > `mv .env.template .env` // on Mac\Linux<br>
-> `move .env.template .env` // on Windows<br>
+> `move env.template .env` // on Windows<br>
 > `npm install`<br>
 > `npm run start`
 

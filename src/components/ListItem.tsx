@@ -1,23 +1,24 @@
+import { FC } from 'react';
 import './ListItem.css';
-import { Article } from '../interfaces/Article';
+import { IArticle } from '../interfaces/Article';
 
-function ListItem(props: Article) {
-  // Leaving the data-id and data-cat for debugging purpose
+const ListItem:FC<IArticle> = (props) => {
   // Not adding a placeholder for No-image cases
   return (
-    <article data-id={props.id} data-cat={props.category}>
+    <article>
       {props.image !== '' ?
-        <div className='article-img-box'>
-          <img className='article-img' src={props.image} alt={`${props.title}`} />
-        </div> :
-        ''
+        <div className='articleImgBox'>
+          <img className='articleImg' src={props.image} alt={`${props.title}`} />
+        </div>
+        :
+        null
       }
-      <div className='article-content'>
-        <h2 className='article-title'>{props.title}</h2>
-        <p className='article-date'>{props.date}</p>
-        <p className='article-intro'>{props.preamble}</p>
+      <div className='articleContent'>
+        <h2 className='articleTitle'>{props.title}</h2>
+        <p className='articleDate'>{props.date}</p>
+        <p className='articleIntro'>{props.preamble}</p>
       </div>
-      <a className='article-more' href='/' title={'Read more '+props.title}>read more</a>
+      <a className='articleMore' href='/' title={'Read more '+props.title}>read more</a>
     </article>
   );
 }

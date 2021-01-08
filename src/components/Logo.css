@@ -1,3 +1,9 @@
-.app-logo-img {
+.appLogo {
+  margin-right: 20px;
+  align-self: flex-end;
+  height: 80px;
+}
+
+.appLogoImg {
   height: 80px;
 }

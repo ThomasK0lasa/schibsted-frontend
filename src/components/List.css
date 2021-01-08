@@ -9,24 +9,19 @@ main {
   position: relative;
 }
 
-main.error, main.loading, main.no-selection {
+main.error, main.loading, main.noSelection {
   display: flex;
   flex-grow: 1;
   align-items: center;
   justify-content: center;
 }
 
-main.error p, main.loading p, main.no-selection p {
+main.error p, main.loading p, main.noSelection p {
   padding: 20px;
   font-size: 35px;
 }
 
-main.error p {
-  background-color: #e74c3c;
-  color: white;
-}
-
-main.no-selection p {
+main.noSelection p {
   background-color: #3ca8e7;
   color: white;
 }

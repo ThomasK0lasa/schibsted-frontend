@@ -1,7 +1,7 @@
-import { Article } from "../interfaces/Article";
+import { IArticle } from "../interfaces/Article";
 
 async function fetchData (resource: string) {
-  let data: Array<Article> = [];
+  let data: IArticle[] = [];
   let errorMsg: string = '';
   // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
   // fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500

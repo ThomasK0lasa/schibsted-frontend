@@ -18,11 +18,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 /* Toastify progress-bar override */
 #App .Toastify__progress-bar--default {
   background: linear-gradient(90deg,#5ac8fa,#2dffcf);

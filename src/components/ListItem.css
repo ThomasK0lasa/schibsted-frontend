@@ -16,7 +16,7 @@ article:hover {
   background-color: #fdfdfd;
 }
 
-.article-img-box {
+.articleImgBox {
   height: 100px;
   width: 100px;
   overflow: hidden;
@@ -25,39 +25,39 @@ article:hover {
   border: 1px solid rgb(224, 224, 224);
 }
 
-.article-img {
+.articleImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.article-content {
+.articleContent {
   display: grid;
   grid-template:
       "a" auto
       "b" 1fr;
 }
 
-.article-title {
+.articleTitle {
   grid-area: a;
   margin: 0;
   margin-bottom: 5px;
   font-size: 1.1em;
 }
 
-.article-date {
+.articleDate {
   grid-area: b;
   font-style: italic;
   margin: 0;
   grid-column: auto;
 }
 
-.article-intro {
+.articleIntro {
   grid-area: c;
   display: none;
 }
 
-.article-more {
+.articleMore {
   display: none;
   position: absolute;
   bottom: 15px;
@@ -65,67 +65,67 @@ article:hover {
   transition: all .2s ease;
 }
 
-.article-more:visited {
+.articleMore:visited {
   color: black;
 }
 
-.article-more:hover {
+.articleMore:hover {
   font-weight: 700;
 }
 
 @media (min-width: 421px) {
-  .article-img-box {
+  .articleImgBox {
     height: 120px;
     width: 150px;
   }
 }
 
-/* additional media steps for best content exposition */
+/* additional breaking points for best content exposition */
 @media (min-width: 521px) {
-  .article-img-box {
+  .articleImgBox {
     height: 140px;
     width: 210px;
   }
-  .article-title {
+  .articleTitle {
     font-size: 1.3em;
   }
 }
 
 @media (min-width: 621px) {
-  .article-title {
+  .articleTitle {
     font-size: 1.5em;
   }
 }
 
-/* Application main breaking step */
+/* application main breaking step */
 @media (min-width: 781px) {
-  .article-img-box {
+  .articleImgBox {
     height: 160px;
     width: 250px;
   }
   article {
     padding: 15px;
   }
-  .article-content {
+  .articleContent {
     grid-template:
       "a" auto
       "b" auto
       "c" 1fr;
   }
-  .article-intro {
+  .articleIntro {
     display: block;
   }
-  .article-more {
+  .articleMore {
     display: block;
   }
 }
 
 @media (min-width: 1001px) {
-  .article-img-box {
+  .articleImgBox {
     height: 180px;
     width: 280px;
   }
-  .article-content {
+  .articleContent {
     display: grid;
     grid-template:
       "a b" auto

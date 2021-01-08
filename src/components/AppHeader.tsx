@@ -1,19 +1,18 @@
-import React from 'react';
 import Logo from './Logo';
 import './AppHeader.css';
 
-function Header() {
+function Header () {
   return (
-    <header className="app-header">
+    <header className="appHeader">
       <Logo />
-      <div className="app-name">
+      <div className="appName">
         <h1>
           News Previews
-          </h1>
+        </h1>
         <p>Recruitment App for Schibsted</p>
       </div>
     </header>
-  );
+  )
 }
 
 export default Header;

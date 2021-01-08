@@ -2,7 +2,10 @@
  as in real App icons are in many places,
 but for this app I'll leave it here */
 
-button.sort-date-btn {
+.sortDateBtn {
+  position: absolute;
+  right: 0;
+  top: -30px;
   cursor: pointer;
   background: rgb(235, 235, 235);
   border: none;
@@ -11,7 +14,7 @@ button.sort-date-btn {
   transition: all .3s ease;
 }
 
-button.sort-date-btn:hover {
+.sortDateBtn:hover {
   background-color: rgb(242, 242, 242);
   box-shadow: 0px 3px gray;
 }
@@ -23,10 +26,4 @@ button.sort-date-btn:hover {
 
 .text {
   vertical-align: middle;
-}
-
-.sort-date-btn {
-  position: absolute;
-  right: 0;
-  top: -30px;
 }

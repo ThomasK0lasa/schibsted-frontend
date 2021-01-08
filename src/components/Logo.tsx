@@ -3,8 +3,8 @@ import './Logo.css';
 
 function Logo() {
   return (
-    <div className="app-logo">
-      <img src={logo} className="app-logo-img" alt="logo" />
+    <div className="appLogo">
+      <img src={logo} className="appLogoImg" alt="logo" />
     </div>
   );
 }

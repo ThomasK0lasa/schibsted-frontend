@@ -11,18 +11,14 @@ nav p, nav ul {
   margin: 0
 }
 
-nav li {
+.itemsFilter {
   display: inline-block;
   margin-right: 10px;
   font-weight: 600;
   text-transform: capitalize;
 }
 
-nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
-  cursor: default;
-}
-
-.checkbox-container {
+.checkboxContainer {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -30,8 +26,14 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
   cursor: pointer;
 }
 
+.checkboxContainer.disabled {
+  cursor: default;
+}
+
+
+/* ---start--- checkbox styling ---start--- */
 /* Hide the browser's default checkbox */
-.checkbox-container input {
+.checkbox {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -50,24 +52,24 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
 }
 
 /* On mouse-over, add a grey background color */
-.checkbox-container:hover input ~ .checkmark, .checkbox-container input:focus ~ .checkmark {
+.checkboxContainer:hover .checkmark, .checkbox:focus ~ .checkmark {
   background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.checkbox-container input:checked ~ .checkmark {
+.checkbox:checked ~ .checkmark {
   background-color: #2196F3;
 }
 
-.checkbox-container:hover input:checked ~ .checkmark, .checkbox-container input:checked:focus ~ .checkmark {
+.checkboxContainer:hover .checkbox:checked ~ .checkmark, .checkbox:checked:focus ~ .checkmark {
   background-color: #1770b9;
 }
 
-.checkbox-container:hover input ~ .checkmark, .checkbox-container input:focus ~ .checkmark {
+.checkboxContainer:hover .checkmark, .checkboxContainer .checkbox:focus ~ .checkmark {
   background-color: #ccc;
 }
 
-.disabled .checkbox-container input:checked ~ .checkmark, .disabled .checkbox-container input ~ .checkmark {
+.checkboxContainer.disabled .checkbox:checked ~ .checkmark,  .checkboxContainer.disabled .checkmark {
   background-color: #ccc;
   cursor: default;
 }
@@ -80,12 +82,12 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
 }
 
 /* Show the checkmark when checked */
-.checkbox-container input:checked ~ .checkmark:after {
+.checkboxContainer .checkbox:checked ~ .checkmark:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
-.checkbox-container .checkmark:after {
+.checkmark:after {
   left: 8px;
   top: 4px;
   width: 4px;
@@ -94,6 +96,7 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
+/* ---end--- checkbox styling ---end--- */
 
 @media (min-width: 781px) {
   nav {
@@ -108,17 +111,17 @@ nav li.disabled .checkbox-container, nav li.disabled input[type=checkbox] {
   nav ul {
     font-size: 120%;
   }
-  nav li {
+  .itemsFilter {
     margin-bottom: 5px;
   }
-  .checkbox-container {
+  .checkboxContainer {
     font-size: 22px;
   }
   .checkmark {
     height: 25px;
     width: 25px;
   }
-  .checkbox-container .checkmark:after {
+  .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;

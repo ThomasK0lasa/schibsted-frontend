@@ -1,41 +1,44 @@
+import { FC } from 'react';
 import query from '../utils/query';
 import './ListFilter.css';
 
-interface props {
-  types: Array<string>,
-  active: Array<string>,
-  selected: Array<string>,
-  select: (newSelection: Array<string>) => void
+interface IProps {
+  types: string[],
+  active: string[],
+  selected: string[],
+  select: (newSelection: string[]) => void
 }
 
-function ListFilter(props: props) {
-  // setting disabled
-  function disabled(type: string) {
-    return props.active.indexOf(type) !== -1 ? false : true;
+const ListFilter:FC<IProps> = ( props ) => {
+  const isDisabled = (type: string) => {
+    return !props.active.includes(type);
   }
 
-  // setting checked
-  function checked(type: string) {
-    return props.selected.indexOf(type) !== -1 ? true : false;
+  const isChecked = (type: string) => {
+    return props.selected.includes(type);
   }
 
-  function select(element: any, type: string ) {
-    let newSelected: Array<string> = props.selected.slice();
-    if (element.target.checked) {
+  // handling click on checkbox
+  const onClick = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
+    select(e.target.checked, type);
+  }
+  
+  // handling enter key on checkbox
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, type: string) => {
+    if (e.key === 'Enter') {
+      select(!e.currentTarget.checked, type);
+    }
+  }
+
+  const select = (state: Boolean, type: string) => {
+    let newSelected = [...props.selected];
+    if (state) {
       newSelected.push(type);
     } else {
-      const index = props.selected.indexOf(type);
-      newSelected.splice(index, 1);
+      newSelected = newSelected.filter(ele => ele !== type);
     }
     query.setType(newSelected, props.types.length);
     props.select(newSelected);
-  }
-
-  // handling enter key on checkbox
-  function keyDown(e: React.KeyboardEvent, type: string ) {
-    if (e.key === 'Enter') {
-      select(e, type);
-    }
   }
 
   return (
@@ -44,15 +47,15 @@ function ListFilter(props: props) {
       <ul>
         {props.types.map(type => {
           return (
-            <li key={type} className={disabled(type) ? 'disabled' : ''}>
-              <label className="checkbox-container">
-                <input type="checkbox"
-                  disabled={disabled(type)}
-                  checked={checked(type)}
-                  onChange={ e => select(e, type)}
-                  onKeyPress={ e => keyDown(e, type)} />
-                  <span className="checkmark"></span>
-                  <span className="checkbox-title">{type}</span>
+            <li key={type} className="itemsFilter">
+              <label className={`checkboxContainer ${isDisabled(type) ? 'disabled' : ''}`}>
+                <input type="checkbox" className="checkbox"
+                  disabled={isDisabled(type)}
+                  checked={isChecked(type)}
+                  onChange={e => onClick(e, type)}
+                  onKeyPress={e => onKeyDown(e, type)} />
+                <span className="checkmark"></span>
+                <span className="checkboxTitle">{type}</span>
               </label>
             </li>
           )

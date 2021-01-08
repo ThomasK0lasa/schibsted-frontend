@@ -1,7 +1,7 @@
-import { Article } from "../interfaces/Article";
+import { IArticle } from "../interfaces/Article";
 
 // data sorting function
-const sortData = (newDir: string, data: Array<Article>) => {
+const sortData = (newDir: string, data: IArticle[]) => {
   if (newDir === 'dsc') {
     return data.sort((a, b) => {
       return sortByDate(b.date, a.date);
@@ -14,7 +14,7 @@ const sortData = (newDir: string, data: Array<Article>) => {
 }
 
 // translations of months
-const trans: { [key: string]: string } = {
+const translate: { [key: string]: string } = {
   januar: 'January',
   februar: 'February',
   mars: 'March',
@@ -33,10 +33,11 @@ const trans: { [key: string]: string } = {
 function sortByDate(a: string, b: string) {
   const adate = a.trim().split(' ');
   const bdate = b.trim().split(' ');
-  adate[1] = trans[adate[1]];
-  bdate[1] = trans[bdate[1]];
-  adate[0] = adate[0].slice(0, -1); //removing dot from date as Firefox cant handle it
-  bdate[0] = bdate[0].slice(0, -1); //removing dot from date as Firefox cant handle it
+  // example date format "1. oktober 2018" - 0: day, 1: month, 2: year
+  adate[1] = translate[adate[1]];
+  bdate[1] = translate[bdate[1]];
+  adate[0] = adate[0].slice(0, -1); //removing dot from date as Firefox can't handle it
+  bdate[0] = bdate[0].slice(0, -1); //removing dot from date as Firefox can't handle it
   return Date.parse(adate.join(' ')) - Date.parse(bdate.join(' '));
 }
 

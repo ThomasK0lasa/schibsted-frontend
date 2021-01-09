@@ -5,7 +5,7 @@ html {
 body {
   min-height: 100%;
 }
-#Root, #App {
+#root, #app {
   min-height: 100vh;
 }
 
@@ -19,6 +19,6 @@ body {
 }
 
 /* Toastify progress-bar override */
-#App .Toastify__progress-bar--default {
+#app .Toastify__progress-bar--default {
   background: linear-gradient(90deg,#5ac8fa,#2dffcf);
 }

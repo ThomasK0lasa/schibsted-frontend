@@ -1,8 +1,8 @@
 import sort from '../utils/sort';
-import { Article } from '../interfaces/Article';
+import { IArticle } from '../interfaces/Article';
 
 test('checking sorting', () => {
-  let test: Array<Article> = [
+  let test: IArticle[] = [
     { date: '2. februar 2019', id:0, image:'', preamble:'', category:'', title:'' },
     { date: '1. oktober 2018', id:0, image:'', preamble:'', category:'', title:'' },
     { date: '5. mai 2019', id:0, image:'', preamble:'', category:'', title:'' },

@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import "./Error.css"
+import "./ErrorComponent.css";
 
 interface IProps {
   errorMsg: string;
 }
 
-const ErrorView: FC<IProps> = ({ errorMsg }) => {
+const ErrorComponent: FC<IProps> = ({ errorMsg }) => {
   return (
     <main className="error"><p>{errorMsg}</p></main>
   )
 }
 
-export default ErrorView;
+export default ErrorComponent;

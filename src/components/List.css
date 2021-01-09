@@ -1,4 +1,4 @@
-#Content {
+#content {
   flex-grow: 1;
   display: flex;
   padding-top: 40px;
@@ -27,7 +27,7 @@ main.noSelection p {
 }
 
 @media (min-width: 781px) {
-  #Content {
+  #content {
     flex-direction: row;
   }
 }

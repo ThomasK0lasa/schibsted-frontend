@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   return (
-    <div id="App">
+    <div id="app">
       <Header />
       <List />
       <ToastContainer position="bottom-right" />

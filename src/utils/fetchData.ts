@@ -1,30 +1,27 @@
 import { IArticle } from "../interfaces/Article";
+import { NetworkError } from "../exceptions/NetworkError";
 
-async function fetchData (resource: string) {
+
+async function fetchData(endpoint: string) {
   let data: IArticle[] = [];
-  let errorMsg: string = '';
   // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
   // fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500
   try {
-    const response = await fetch(process.env.REACT_APP_API_URL + resource);
+    const response = await fetch(process.env.REACT_APP_API_URL + endpoint);
     if (!response.ok) {
       throw response.status;
     }
     const json = await response.json();
-    const { articles } = json;
-    if (articles) {
-      data = [...articles];
-    }
+    data = [...json.articles];
   } catch (err) {
     if (err instanceof TypeError) {
       // fetch TypeError
-       errorMsg = 'Network error';
+      throw new NetworkError('Network Error');
     } else {
-      // throwing separate error toast when part of API is 'down'
-      errorMsg = ('Something is wrong with ' + resource.toUpperCase() + ' API endpoint!');
+      throw new Error(`Something is wrong with ${endpoint.toUpperCase()} API endpoint!`);
     }
   }
-  return { data, errorMsg };
+  return data;
 }
 
 export default fetchData;

@@ -47,9 +47,9 @@ const ListFilter:FC<IProps> = ( props ) => {
       <ul>
         {props.types.map(type => {
           return (
-            <li key={type} className="itemsFilter">
+            <li key={type}>
               <label className={`checkboxContainer ${isDisabled(type) ? 'disabled' : ''}`}>
-                <input type="checkbox" className="checkbox"
+                <input type="checkbox"
                   disabled={isDisabled(type)}
                   checked={isChecked(type)}
                   onChange={e => onClick(e, type)}

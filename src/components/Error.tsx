@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import "./Error.css"
 
 interface IProps {
   errorMsg: string;

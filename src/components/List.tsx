@@ -92,7 +92,7 @@ function List() {
 
   // sort data
   const sortData = (dir: string) => {
-    setData(sort(dir, data));
+    setData(sort(dir, [...data]));
   }
 
   // selecting data in case of new selection

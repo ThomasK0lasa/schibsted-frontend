@@ -54,8 +54,6 @@ function List() {
       setLiveEndpoints(liveEndpoints);
       setData(data);
 
-      // checking if all endpoints are live because of possible
-      // conflict between live endpoints and selected ones in query
       if (liveEndpoints.length === apiEndpoints.current.length) {
         toast('Loaded successfully :)');
       }
@@ -66,7 +64,10 @@ function List() {
   useEffect(
     () => {
       let selected: string[] = [];
-      if (query.checkParamKey('t')) {
+
+      // checking if all endpoints are live because of possible
+      // conflict between live endpoints and selected ones in query
+      if (query.checkParamKey('t') && liveEndpoints.length === apiEndpoints.current.length) { 
         for (const endpoint of apiEndpoints.current) {
           if (query.checkParamValue(endpoint)) {
             selected.push(endpoint);

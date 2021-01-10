@@ -17,23 +17,23 @@ const ListFilter: FC<IProps> = ({ sort }) => {
   }
 
   // initial sorting if query 
-  let newDir = 'natural';
+  let initDirection = 'natural';
   if (query.checkParamKey('s')) {
-    newDir = (query.checkParamValue('dsc')) ? 'dsc' : 'asc';
+    initDirection = (query.checkParamValue('dsc')) ? 'dsc' : 'asc';
   }
-  const [dir, setDir] = useState(newDir);
+  const [direction, setDirection] = useState(initDirection);
   
   const callSort = () => {
-    let newDir = (dir === 'natural' || dir === 'asc') ? 'dsc' : 'asc';
-    setDir(newDir);
-    sort(newDir);
-    query.setSort(newDir);
+    let newDirection = (direction === 'natural' || direction === 'asc') ? 'dsc' : 'asc';
+    setDirection(newDirection);
+    sort(newDirection);
+    query.setSort(newDirection);
   }
 
   return (
     <button className="sortDateBtn" onClick={callSort}>
       <span className="text">Sort By Date</span>
-      <img className="icon" src={iconMapping[dir]} alt="sorting icon" />
+      <img className="icon" src={iconMapping[direction]} alt="sorting icon" />
     </button>
   );
 }

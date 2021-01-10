@@ -1,8 +1,8 @@
 import { IArticle } from "../interfaces/Article";
 
 // data sorting function
-const sortData = (newDir: string, data: IArticle[]) => {
-  if (newDir === 'dsc') {
+const sortData = (direction: string, data: IArticle[]) => {
+  if (direction === 'dsc') {
     return data.sort((a, b) => {
       return sortByDate(b.date, a.date);
     })

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { Fragment, useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import ListItem from './ListItem';
 import ListFilter from './ListFilter';
@@ -118,7 +118,7 @@ function List() {
         data.length === 0 ?
           <main className="loading"><p>Loading...</p></main>
           :
-          <React.Fragment>
+          <Fragment>
             <ListFilter {...listProps} />
             {selected.length === 0 ?
               <main className="noSelection"><p>Please, select data source. :)</p></main>
@@ -131,7 +131,7 @@ function List() {
                 ))}
               </main>
             }
-          </React.Fragment>
+          </Fragment>
       }
     </div>
   );

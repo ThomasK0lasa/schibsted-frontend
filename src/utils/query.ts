@@ -25,7 +25,7 @@ const query = {
 
   setType: function (selectedTypes: string[], allTypesCount: number) {
     const params = new URLSearchParams(window.location.search);
-    if (selectedTypes.length !== 0 && selectedTypes.length !== allTypesCount) {
+    if (0 < selectedTypes.length && selectedTypes.length < allTypesCount) {
       params.delete("t");
       selectedTypes.forEach(type => {
         params.append('t', type);

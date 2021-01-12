@@ -9,23 +9,6 @@ main {
   position: relative;
 }
 
-main.error, main.loading, main.noSelection {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-}
-
-main.error p, main.loading p, main.noSelection p {
-  padding: 20px;
-  font-size: 35px;
-}
-
-main.noSelection p {
-  background-color: #3ca8e7;
-  color: white;
-}
-
 @media (min-width: 781px) {
   #content {
     flex-direction: row;

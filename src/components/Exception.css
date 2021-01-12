@@ -1,0 +1,26 @@
+main.exception {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.exception p {
+  padding: 20px;
+  font-size: 35px;
+  color: white;
+}
+
+.exception .loading {
+  color: black;
+}
+
+.exception .error {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.exception .unselected, .exception .empty {
+  background-color: #3ca8e7;
+  color: white;
+}
